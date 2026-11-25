@@ -1,18 +1,29 @@
+// TypeScript Basics: Tuples
+// A tuple defines the expected type at each position.
+
 export {};
 
-// let user: [number, string] = [1, 'Mosh'];
-
-// user.push(1) is allowed by TypeScript, even though the tuple should have 2 items.
-// At runtime the array becomes [1, 'Mosh', 1]. TypeScript does not catch this.
-
-// Simple examples of tuples
 let user1: [number, string] = [1, 'Mosh'];
 let user2: [number, string] = [2, 'John'];
 let user3: [number, string] = [3, 'Jane'];
 
-// Accessing tuple elements
-console.log(user1[0]); // Output: 1
-console.log(user1[1]); // Output: Mosh
+// Accessing individual tuple elements.
+console.log('User ID:', user1[0]);
+console.log('Username:', user1[1]);
 
-// Let's print the entire tuple
-console.log(user1); // Output: [1, 'Mosh']
+// Printing complete tuples.
+console.log('User 1:', user1);
+console.log('User 2:', user2);
+console.log('User 3:', user3);
+
+// Limitation: mutable tuples can still accept push() calls.
+user1.push(1);
+
+console.log('After push:', user1);
+
+// A readonly tuple prevents mutation during type checking.
+const readonlyUser: readonly [number, string] = [4, 'Doe'];
+
+console.log('Readonly tuple:', readonlyUser);
+
+// readonlyUser.push(1); // TypeScript error

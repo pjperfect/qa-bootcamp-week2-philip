@@ -1,21 +1,45 @@
+// TypeScript Basics: Optional Chaining
+// Demonstrates safe access to potentially missing values.
+
 type Customer = {
   birthday?: Date;
 };
 
 function getCustomer(id: number): Customer | null {
-  return id == 0 ? null : { birthday: new Date() };
+  return id === 0 ? null : { birthday: new Date('2000-01-01') };
 }
 
-let customer = getCustomer(1);
-// Optional property access: if customer is null or birthday is missing,
-// this prints undefined instead of crashing. Here it prints the current year.
-console.log(customer?.birthday?.getFullYear());
+// 1. Optional property access.
+const customer = getCustomer(1);
+const missingCustomer = getCustomer(0);
+const customerWithoutBirthday: Customer = {};
 
-// Optional element access: customers?.[0] gives undefined if customers is null or undefined.
-// customers is not defined in this file, so this stays a comment.
-// customers?.[0]
+console.log('Existing birthday:', customer?.birthday?.getFullYear());
 
-// Optional call operator
-// let log: any = (message: string) => console.log(message);
-let log: any = null;
-log?.('a');
+console.log('Missing customer:', missingCustomer?.birthday?.getFullYear());
+
+console.log(
+  'Missing birthday:',
+  customerWithoutBirthday?.birthday?.getFullYear()
+);
+
+// 2. Optional element access.
+function getFirstCustomer(customers: Customer[] | null) {
+  return customers?.[0];
+}
+
+console.log(
+  'Existing array element:',
+  getFirstCustomer([customerWithoutBirthday])
+);
+console.log('Missing array:', getFirstCustomer(null));
+
+// 3. Optional function call.
+function runLogger(log?: (message: string) => void): void {
+  log?.('Logger executed');
+}
+
+runLogger(console.log);
+runLogger();
+
+console.log('Finished without a runtime error');
