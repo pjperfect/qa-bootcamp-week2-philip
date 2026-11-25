@@ -1,17 +1,73 @@
-# TypeScript basics
+# TypeScript Basics
 
-Practice files from the [TypeScript Tutorial for Beginners](https://www.youtube.com/watch?v=d56mG7DezGs) by Programming with Mosh and a profile validator exercise.
+Practice exercises based on the [TypeScript Tutorial for Beginners](https://www.youtube.com/watch?v=d56mG7DezGs) by Programming with Mosh, alongside a profile validator exercise.
 
-## src/ts-basics
+## Learning objectives
 
-- `index.ts`: the first program. Prints Hello world and declares a typed number variable.
-- `tuples.ts`: tuples, which are arrays with a fixed length and a type for each position. Prints one tuple element by element and then the whole tuple.
-- `function.ts`: a function with typed parameters and a default value. `calculateTax` multiplies income by 1.2 for tax years before 2022 and by 1.3 otherwise.
-- `objects.ts`: an object with an inline type: a readonly id, a name and a `retire` method. The `export {};` line at the top makes the file its own module, so `employee` does not clash with the same name in `type-aliases.ts`.
-- `type-aliases.ts`: an `Employee` type alias and an object built from it. Prints the object.
-- `union-types.ts`: `kgToLbs` accepts a number or a string and returns the weight in pounds.
-- `optional-chaining.ts`: the `?.` operator on a customer that may be null, an optional birthday and an optional function call.
+- Understand TypeScript fundamentals and explicit type annotations.
+- Write functions with typed parameters and return values.
+- Define objects, tuples and reusable type aliases.
+- Work with union types and type narrowing.
+- Safely access optional properties using optional chaining.
+- Verify behaviour using representative input scenarios.
 
-## src/profile-validator.ts
+## Practice files
 
-Defines a `User` type where `settings` is optional and `notifications` inside it is also optional. `isNotified` returns `true` only when `notifications` is `true`. It returns `false` when `settings` or `notifications` is missing. The file prints the result for three test users.
+Each practice file includes explanatory comments, executable examples and observable console output.
+
+| File                   | Concept                                                     |
+| ---------------------- | ----------------------------------------------------------- |
+| `index.ts`             | First TypeScript program and type annotations               |
+| `tuples.ts`            | Tuple elements, mutation and readonly tuples                |
+| `functions.ts`         | Typed functions, default parameters and conditional logic   |
+| `objects.ts`           | Inline object types, readonly properties and methods        |
+| `type-aliases.ts`      | Reusable custom types                                       |
+| `union-types.ts`       | Union types, type narrowing and input limitations           |
+| `optional-chaining.ts` | Optional property access, element access and function calls |
+
+Run any practice file from the repository root using `npx tsx` followed by its file path.
+
+For example:
+
+`npx tsx src/ts-basics/functions.ts`
+
+Expected output:
+
+- 2021: 12000
+- 2022: 13000
+- 2023: 13000
+- Default year: 13000
+
+## Profile validator
+
+The `src/profile-validator.ts` exercise demonstrates how to safely access optional notification settings.
+
+The `isNotified` function returns `true` only when notifications are explicitly enabled.
+
+| Scenario                          | Expected result |
+| --------------------------------- | --------------- |
+| Notifications enabled             | true            |
+| Settings missing                  | false           |
+| Notifications missing             | false           |
+| Notifications explicitly disabled | false           |
+
+Run:
+
+`npx tsx src/profile-validator.ts`
+
+Expected output:
+
+- John true
+- Jane false
+- Doe false
+- Mary false
+
+## Type checking
+
+Run `npx tsc --noEmit` to check the project for TypeScript errors without generating JavaScript files.
+
+A successful execution produces no compiler diagnostics.
+
+## QA considerations
+
+The examples demonstrate normal behaviour, boundary conditions, missing data and input limitations. Type checking and runtime verification complement each other: successful type checking alone does not guarantee correct runtime behaviour.
