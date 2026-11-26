@@ -3,7 +3,7 @@
 
 console.log('Hello world');
 
-// Type annotations ensures age holds a number.
+// Type annotations ensure age holds a number.
 let age: number = 20;
 
 console.log('Age:', age);
