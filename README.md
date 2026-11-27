@@ -1,71 +1,77 @@
-# QA Bootcamp Week 2 Starter
+# QA Bootcamp — Week 2
 
-This is the starting point for Week 2 of the QA bootcamp. During the week you will use it to practise:
+This repository contains practical exercises and automated tests developed during Week 2 of the QA Engineering Bootcamp.
 
-- TypeScript
-- Playwright (UI testing)
-- Postman (API testing)
+The project focuses on:
+
+- TypeScript fundamentals
+- Playwright UI and API testing
+- Postman API testing
+- Page Object Model (POM)
+- Gherkin scenarios
+- Test failure analysis using Playwright Trace Viewer
 - The Toolshop REST API
-
-There are no tests in this repo. You will write them during the week.
 
 ## Prerequisites
 
-Install these before you start:
-
-- [Node.js](https://nodejs.org/) (the current LTS version)
+- [Node.js](https://nodejs.org/) (LTS version)
 - [Git](https://git-scm.com/)
-- [VS Code](https://code.visualstudio.com/)
+- [VS Code](https://code.visualstudio.com/) (recommended)
 
-## Setup
+## Setup and Execution
 
-Run these steps in order from a terminal.
+After cloning the repository, open the project directory in your terminal.
 
-1. Clone the repo and open the folder:
-
-   ```bash
-   git clone <repo-url>
-   cd qa-bootcamp-week2-starter
-   ```
-
-2. Install the dependencies:
+1. Install the project dependencies and Chromium:
 
    ```bash
    npm install
-   ```
-
-3. Install the Chromium browser for Playwright:
-
-   ```bash
    npx playwright install chromium
    ```
 
-4. Copy `.env.example` to `.env`:
+2. Configure the environment:
 
    ```bash
    cp .env.example .env
    ```
 
-   `.env` already contains the Toolshop website URL (`TOOLSHOP_URL`) and the Toolshop API URL (`TOOLSHOP_API_URL`). Only change them if your trainer gives you different URLs.
+   The environment file contains the Toolshop website and API URLs. Only change them if different URLs are required.
 
-5. Check that your setup works:
+3. Run the automated test suite:
 
    ```bash
-   npm run check
+   npm test
    ```
 
-   This sends a GET request to the Toolshop API's `/products` endpoint (no login needed). If everything is set up correctly, it prints your Node version, the HTTP status (200), the number of products, and a last line that says `PASS`.
+> **Warning:** Never commit `.env`. It is excluded from version control through `.gitignore`.
 
-> **Warning:** never commit `.env`. It is where your own settings and, later in the course, your secrets (keys, tokens, passwords) live. It is listed in `.gitignore` so Git ignores it. Do not remove it from there.
+## Project Structure
 
-## Folders
+| Folder               | Purpose                                                     |
+| -------------------- | ----------------------------------------------------------- |
+| [`src/`](./src/)     | TypeScript fundamentals and practical exercises.            |
+| [`tests/`](./tests/) | Automated UI and API tests.                                 |
+| `pages/`             | Reusable Page Objects.                                      |
+| `features/`          | Gherkin feature files and scenarios.                        |
+| `scripts/`           | Helper scripts for environment and API connectivity checks. |
 
-| Folder     | What it is for |
-|------------|----------------|
-| `tests/`   | Your Playwright tests. It is empty for now; you will add tests during the week. |
-| `scripts/` | Helper scripts. `check.ts` checks your setup and is run by `npm run check`. |
+## Available Commands
 
-## Scripts
+| Command                          | Purpose                                                |
+| -------------------------------- | ------------------------------------------------------ |
+| `npm run check`                  | Verify environment configuration and API connectivity. |
+| `npm test`                       | Run the complete Playwright test suite.                |
+| `npx playwright test --headed`   | Run tests with the browser visible.                    |
+| `npx playwright test --trace on` | Run tests and record traces for investigation.         |
 
-- `npm run check`: checks your `.env` and that you can reach the Toolshop API.
-- `npm test`: runs the Playwright tests in `tests/`.
+## Automated Test Suite
+
+The suite currently contains seven automated tests covering UI interactions, product quantity validation and REST API functionality.
+
+For detailed test coverage, see the [Test Suite README](./tests/README.md).
+
+## Additional Notes
+
+- The automated tests depend on the availability of the external Toolshop application and API.
+- Gherkin scenarios are documented separately and are not executed through Cucumber.
+- Test data is selected dynamically where product availability is a prerequisite.

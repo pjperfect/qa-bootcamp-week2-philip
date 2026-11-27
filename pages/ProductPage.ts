@@ -14,13 +14,12 @@ export class ProductPage {
   async goto() {
     await this.page.goto('/');
     await this.page
-      .getByRole('link', {
-        name: /Combination Pliers/i,
+      .locator('a[data-test^="product-"]')
+      .filter({
+        hasNot: this.page.locator('[data-test="out-of-stock"]'),
       })
+      .first()
       .click();
-    // await this.page
-    //   .locator('[data-test="product-01M89CP1F44HC5P6D1NK2WGEX9"]')
-    //   .click();
   }
 
   async increaseQuantity() {
