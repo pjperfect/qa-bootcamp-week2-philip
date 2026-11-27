@@ -4,14 +4,17 @@ This directory contains automated UI and API tests for the Practice Software Tes
 
 ## Test Coverage
 
-| Test file                  | Objective                                                                                             | Type             |
-| -------------------------- | ----------------------------------------------------------------------------------------------------- | ---------------- |
-| `home-page-title.spec.ts`  | Verify the homepage title.                                                                            | UI               |
-| `search-pliers.spec.ts`    | Verify that searching for pliers returns relevant products.                                           | UI               |
-| `invalid-login.spec.ts`    | Verify that invalid login credentials are rejected with the appropriate error message.                | UI               |
-| `product-quantity.spec.ts` | Verify that the product quantity cannot be reduced below 1.                                           | UI / Page Object |
-| `products-api.spec.ts`     | Verify the products endpoint response status and a response field.                                    | API              |
-| `cart-api.spec.ts`         | Verify cart creation, adding a product, response fields, cleanup and handling of a non-existent cart. | API              |
+| Test file                       | Objective                                                                                             | Type             |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------- | ---------------- |
+| `home-page-title.spec.ts`       | Verify the homepage title.                                                                            | UI               |
+| `search-pliers.spec.ts`         | Verify that searching for pliers returns relevant products.                                           | UI               |
+| `invalid-login.spec.ts`         | Verify that invalid login credentials are rejected with the appropriate error message.                | UI               |
+| `product-quantity.spec.ts`      | Verify that the product quantity cannot be reduced below 1.                                           | UI / Page Object |
+| `products-api.spec.ts`          | Verify the products endpoint response status and a response field.                                    | API              |
+| `cart-operations-api.spec.ts`   | Verify cart creation, adding a product, response fields, cleanup and handling of a non-existent cart. | API              |
+| `search-by-name-ui.spec.ts`     | Verify that searching for pliers returns only products containing pliers in their names.              | UI / Page Object |
+| `add-to-cart-api.spec.ts`       | Verify cart creation, product addition, cart contents and cleanup.                                    | API              |
+| `drill/flakiness-drill.spec.ts` | Verify that the Saved message appears using a retrying assertion.                                     | UI               |
 
 ## Test Design
 
@@ -47,7 +50,6 @@ For installation and environment configuration, refer to the [root README](../RE
 ## Known Limitations
 
 The tests depend on the availability of the external Toolshop application and API, as well as the availability of suitable product data.
-
 
 ### NB: Optional Cucumber-js integration
 

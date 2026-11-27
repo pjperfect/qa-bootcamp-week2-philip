@@ -13,12 +13,15 @@ test('C4 Add to a cart (API)', async ({ request }) => {
   expect(product).toBeDefined();
 
   const productID = product.id;
-  const cartResponse = await request.post(`${API_URL}/carts`);
-  const cartBody = await cartResponse.json();
-  const cartID = cartBody.id;
+  expect(productID).toBeDefined();
+
+  let cartID: string | undefined;
 
   try {
-    expect(productID).toBeDefined();
+    const cartResponse = await request.post(`${API_URL}/carts`);
+    const cartBody = await cartResponse.json();
+    cartID = cartBody.id;
+
     expect(cartResponse.status()).toBe(201);
     expect(cartID).toBeDefined();
 
@@ -39,7 +42,6 @@ test('C4 Add to a cart (API)', async ({ request }) => {
     const addProductBody = await addProductResponse.json();
     expect(addProductBody.result).toBe('item added or updated');
 
-    // the cart contains the product
     const getCartResponse = await request.get(`${API_URL}/carts/${cartID}`);
     expect(getCartResponse.status()).toBe(200);
 
