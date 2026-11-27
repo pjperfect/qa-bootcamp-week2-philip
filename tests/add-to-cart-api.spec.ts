@@ -9,15 +9,13 @@ test('C4 Add to a cart (API)', async ({ request }) => {
   expect(productsResponse.status()).toBe(200);
 
   const productsBody = await productsResponse.json();
-  const product = productsBody.data.find(
-    (product: { in_stock: boolean }) => product.in_stock
-  );
+  const product = productsBody.data[0];
   expect(product).toBeDefined();
 
-  const productID =  product.id;
+  const productID = product.id;
   const cartResponse = await request.post(`${API_URL}/carts`);
   const cartBody = await cartResponse.json();
-  const cartID =  cartBody.id;
+  const cartID = cartBody.id;
 
   try {
     expect(productID).toBeDefined();
