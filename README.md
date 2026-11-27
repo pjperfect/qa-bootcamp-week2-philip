@@ -11,6 +11,7 @@ The project focuses on:
 - Gherkin scenarios
 - Test failure analysis using Playwright Trace Viewer
 - The Toolshop REST API
+- Test reliability and flakiness using web-first assertions
 
 ## Prerequisites
 
@@ -66,7 +67,7 @@ After cloning the repository, open the project directory in your terminal.
 
 ## Automated Test Suite
 
-The suite currently contains seven automated tests covering UI interactions, product quantity validation and REST API functionality.
+The suite currently contains ten automated tests covering UI interactions, product quantity validation, REST API functionality, the Week 2 capstone cases (C1 and C4), and a flakiness drill demonstrating the use of web-first assertions.
 
 For detailed test coverage, see the [Test Suite README](./tests/README.md).
 
@@ -74,4 +75,5 @@ For detailed test coverage, see the [Test Suite README](./tests/README.md).
 
 - The automated tests depend on the availability of the external Toolshop application and API.
 - Gherkin scenarios are documented separately and are not executed through Cucumber.
-- Test data is selected dynamically where product availability is a prerequisite.
+- Test data is selected dynamically to avoid dependencies on specific products.
+- The flakiness drill uses a local HTML file and does not depend on the external Toolshop application or API.
