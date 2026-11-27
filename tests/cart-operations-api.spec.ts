@@ -7,25 +7,15 @@ test('test one creates a cart, adds a product, and checks the response fields', 
 }) => {
   const productsResponse = await request.get(`${API_URL}/products`);
 
-  //   console.log('URL:', productsResponse.url());
-  //   console.log('Status:', productsResponse.status());
-  //   console.log('Response:', await productsResponse.text());
-
   expect(productsResponse.status()).toBe(200);
 
   const productsBody = await productsResponse.json();
 
-  // console.log(productsBody.data);
-
-  const product = productsBody.data.find(
-    (product: { in_stock: boolean }) => product.in_stock === true
-  );
+  const product = productsBody.data[0];
 
   expect(product).toBeDefined();
 
   const productID = product.id;
-
-  // console.log(productID);
 
   const cartResponse = await request.post(`${API_URL}/carts`);
 
